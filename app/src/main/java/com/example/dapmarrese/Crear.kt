@@ -38,7 +38,7 @@ class Crear : Fragment() {
 
         botonSubir.setOnClickListener {
 
-            val documentId:String = db.collection("SuperHeroes").document().id
+            val documentId:String = db.collection("Canciones").document().id
 
             val superHeroeNuevo = hashMapOf(
                 "cancion" to textCancion.text.toString(),

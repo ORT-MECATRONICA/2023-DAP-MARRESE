@@ -49,13 +49,13 @@ class Editar : Fragment() {
         idCompartido = ViewModelProvider(requireActivity()).get(sharedData::class.java)
         idCompartido.dataID.observe(viewLifecycleOwner) { data1 ->
 
-            db.collection("SuperHeroes").document(data1).get().addOnSuccessListener {
+            db.collection("Canciones").document(data1).get().addOnSuccessListener {
 
-                cancionNueva.setText(it.data?.get("superhero").toString())
-                cantanteNuevo.setText(it.data?.get("realName").toString())
-                anoNuevo.setText(it.data?.get("publisher").toString())
+                cancionNueva.setText(it.data?.get("cancion").toString())
+                cantanteNuevo.setText(it.data?.get("cantante").toString())
+                anoNuevo.setText(it.data?.get("ano").toString())
                 photoNuevo.setText(it.data?.get("photo").toString())
-                IDcancion = it.data?.get("idSuperHero").toString()
+                IDcancion = it.data?.get("idFirebase").toString()
 
             }.addOnFailureListener {
                 Toast.makeText(context, "no se encontraron datos", Toast.LENGTH_SHORT).show()

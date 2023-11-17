@@ -43,11 +43,11 @@ class Informacion : Fragment() {
         idCompartido = ViewModelProvider(requireActivity()).get(sharedData::class.java)
         idCompartido.dataID.observe(viewLifecycleOwner) { data1 ->
 
-            db.collection("SuperHeroes").document(data1).get().addOnSuccessListener {
+            db.collection("Canciones").document(data1).get().addOnSuccessListener {
 
-                cancionData.text = (it.data?.get("superhero").toString())
-                cantanteData.text = (it.data?.get("realName").toString())
-                anoData.text = (it.data?.get("publisher").toString())
+                cancionData.text = (it.data?.get("cancion").toString())
+                cantanteData.text = (it.data?.get("cantante").toString())
+                anoData.text = (it.data?.get("ano").toString())
                 Glide.with(photoData.context).load(it.data?.get("photo").toString()).into(photoData)
 
             }.addOnFailureListener {
