@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "465697098891",
+    "project_id": "fir-marrese",
+    "storage_bucket": "fir-marrese.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465697098891:android:ec07b3206aab1a36b2988e",
+        "android_client_info": {
+          "package_name": "com.example.dapmarrese"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-S3_dCjgdUlzNkVg6z9fIDKv3BjNAs20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
