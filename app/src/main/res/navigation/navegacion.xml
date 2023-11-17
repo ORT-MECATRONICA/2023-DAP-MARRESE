@@ -30,5 +30,34 @@
         android:id="@+id/inicio"
         android:name="com.example.dapmarrese.Inicio"
         android:label="fragment_inicio"
-        tools:layout="@layout/fragment_inicio" />
+        tools:layout="@layout/fragment_inicio" >
+        <action
+            android:id="@+id/action_inicio_to_crear"
+            app:destination="@id/crear" />
+        <action
+            android:id="@+id/action_inicio_to_editar"
+            app:destination="@id/editar" />
+        <action
+            android:id="@+id/action_inicio_to_informacion"
+            app:destination="@id/informacion" />
+    </fragment>
+    <fragment
+        android:id="@+id/crear"
+        android:name="com.example.dapmarrese.Crear"
+        android:label="fragment_crear"
+        tools:layout="@layout/fragment_crear" >
+        <action
+            android:id="@+id/action_crear_to_inicio"
+            app:destination="@id/inicio" />
+    </fragment>
+    <fragment
+        android:id="@+id/editar"
+        android:name="com.example.dapmarrese.Editar"
+        android:label="fragment_editar"
+        tools:layout="@layout/fragment_editar" />
+    <fragment
+        android:id="@+id/informacion"
+        android:name="com.example.dapmarrese.Informacion"
+        android:label="fragment_informacion"
+        tools:layout="@layout/fragment_informacion" />
 </navigation>
