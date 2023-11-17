@@ -6,26 +6,83 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import sharedData
 
 class Editar : Fragment() {
 
-    companion object {
-        fun newInstance() = Editar()
-    }
-
     private lateinit var viewModel: EditarViewModel
+
+    private lateinit var idCompartido: sharedData
+    private var db = Firebase.firestore
+
+    private lateinit var cancionNueva: EditText
+    private lateinit var cantanteNuevo: EditText
+    private lateinit var anoNuevo: EditText
+    private lateinit var photoNuevo: EditText
+
+    private lateinit var IDcancion: String
+
+    private lateinit var botonSubirDatos: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_editar, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_editar, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(EditarViewModel::class.java)
-        // TODO: Use the ViewModel
+        cancionNueva = view.findViewById(R.id.cancionNueva)
+        cantanteNuevo = view.findViewById(R.id.cantanteNuevo)
+        anoNuevo = view.findViewById(R.id.anoNuevo)
+        photoNuevo = view.findViewById(R.id.photoNuevo)
+
+        botonSubirDatos = view.findViewById(R.id.botonSubirDatos)
+
+        db = FirebaseFirestore.getInstance()
+
+        idCompartido = ViewModelProvider(requireActivity()).get(sharedData::class.java)
+        idCompartido.dataID.observe(viewLifecycleOwner) { data1 ->
+
+            db.collection("SuperHeroes").document(data1).get().addOnSuccessListener {
+
+                cancionNueva.setText(it.data?.get("superhero").toString())
+                cantanteNuevo.setText(it.data?.get("realName").toString())
+                anoNuevo.setText(it.data?.get("publisher").toString())
+                photoNuevo.setText(it.data?.get("photo").toString())
+                IDcancion = it.data?.get("idSuperHero").toString()
+
+            }.addOnFailureListener {
+                Toast.makeText(context, "no se encontraron datos", Toast.LENGTH_SHORT).show()
+            }
+
+            botonSubirDatos.setOnClickListener {
+
+                val superHeroeNuevo = hashMapOf(
+                    "cancion" to cancionNueva.text.toString(),
+                    "cantante" to cantanteNuevo.text.toString(),
+                    "ano" to anoNuevo.text.toString(),
+                    "photo" to photoNuevo.text.toString(),
+                    "idFirebase" to IDcancion
+                )
+
+                db.collection("Canciones").document(data1).set(superHeroeNuevo)
+                    .addOnSuccessListener {
+                        Toast.makeText(context, "subido", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(context, "no se pudo subir", Toast.LENGTH_SHORT).show()
+                    }
+
+                findNavController().navigate(R.id.action_editar_to_inicio)
+            } }
+
+        return view
     }
 
 }

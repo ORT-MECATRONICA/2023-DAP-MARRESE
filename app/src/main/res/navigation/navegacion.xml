@@ -54,7 +54,11 @@
         android:id="@+id/editar"
         android:name="com.example.dapmarrese.Editar"
         android:label="fragment_editar"
-        tools:layout="@layout/fragment_editar" />
+        tools:layout="@layout/fragment_editar" >
+        <action
+            android:id="@+id/action_editar_to_inicio"
+            app:destination="@id/inicio" />
+    </fragment>
     <fragment
         android:id="@+id/informacion"
         android:name="com.example.dapmarrese.Informacion"

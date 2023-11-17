@@ -37,7 +37,7 @@ class Inicio : Fragment() {
         val view = inflater.inflate(R.layout.fragment_inicio, container, false)
 
         db = FirebaseFirestore.getInstance()
-        recyclerView = view.findViewById(R.id.recyclerview)
+        recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         musicList = arrayListOf()
         botonAdd = view.findViewById(R.id.botonNuevo)

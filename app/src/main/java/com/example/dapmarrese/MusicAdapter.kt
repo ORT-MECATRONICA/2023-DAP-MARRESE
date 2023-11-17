@@ -30,9 +30,9 @@ class MusicAdapter(
 
     class MusicViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        val cancion= view.findViewById<TextView>(R.id.texto1)
-        val cantante= view.findViewById<TextView>(R.id.texto2)
-        val ano= view.findViewById<TextView>(R.id.texto3)
+        val cancion= view.findViewById<TextView>(R.id.textoCancion)
+        val cantante= view.findViewById<TextView>(R.id.textoCantante)
+        val ano= view.findViewById<TextView>(R.id.textoAno)
         val photo = view.findViewById<ImageView>(R.id.foto)
         val editar = view.findViewById<Button>(R.id.botonEditar)
         val eliminar = view.findViewById<Button>(R.id.botonEliminar)
