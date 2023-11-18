@@ -60,11 +60,11 @@ class Inicio : Fragment() {
                 }
 
                 adapter = MusicAdapter(musicList,
-                    onDeleteClick = {position -> deleteMusica(position)
+                    onDeleteClick = {position -> deleteHero(position)
                     },
-                    onEditClick = {position -> editMusica(position)
+                    onEditClick = {position -> editSuperHero(position)
                     },
-                    onItemClick = {position -> seeData(position)})
+                    onItemClick = {position -> seeSuperHeroData(position)})
 
                 recyclerView.adapter = adapter
             }
@@ -73,7 +73,7 @@ class Inicio : Fragment() {
         }
     }
 
-    fun seeData(position:Int) {
+    fun seeSuperHeroData(position:Int) {
 
         idMusica = musicList[position].idFirebase.toString()
 
@@ -83,7 +83,7 @@ class Inicio : Fragment() {
         findNavController().navigate(R.id.action_inicio_to_informacion)
     }
 
-    fun editMusica(position: Int) {
+    fun editSuperHero(position: Int) {
         idMusica = musicList[position].idFirebase.toString()
 
         idCompartido = ViewModelProvider(requireActivity()).get(sharedData::class.java)
@@ -92,7 +92,7 @@ class Inicio : Fragment() {
         findNavController().navigate(R.id.action_inicio_to_editar)
     }
 
-    fun deleteMusica (position : Int){
+    fun deleteHero (position : Int){
 
         db.collection("Canciones").document(musicList[position].idFirebase.toString()).delete()
             .addOnSuccessListener {
